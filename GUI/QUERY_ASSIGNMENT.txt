@@ -1,0 +1,55 @@
+1)   SELECT DISTINCT job FROM employment;
+
+
+ii. List the details of the emps in asc order of the Dptnos and desc of Jobs?
+--->   SELECT deptno ,job FROM employment ORDER BY `employment`.`deptno` DESC
+
+
+iii) Display all the unique job groups in the descending order? 
+----> SELECT deptno ,job FROM employment ORDER BY `employment`.`deptno` DESC
+
+
+4 ->SELECT*FROM employment WHERE hiredate<'1981-01-01';
+5 ->SELECT empno,ename,sal,sal/30 AS total FROM employment ORDER BY hiredate ASC;
+6 - > SELECT empno,ename,sal FROM employment WHERE mgr=7369;
+7--> SELECT*FROM employment WHERE sal<comm
+8--> SELECT * FROM `employment` WHERE job IN ('CLERK ', 'ANALYST') ORDER BY job DESC;
+9-->SELECT * FROM employment WHERE sal*12 BETWEEN 20000 AND 45000;
+10-->SELECT ename FROM employment WHERE ename LIKE 'S____'
+11--->SELECT * FROM employment WHERE empno NOT LIKE '76%'
+12-->SELECT ename FROM employment WHERE deptno='20' AND job='CLERK';
+13 ---> SELECT ename FROM employment WHERE deptno = 20 AND job IN (SELECT job FROM employment WHERE deptno =10)
+14---->SELECT ename FROM employment WHERE sal IN (SELECT sal FROM employment WHERE ename='FORD' OR  ename= 'SMITH') ORDER BY  sal DESC;
+
+15--->SELECT ename,job FROM employment WHERE job IN (SELECT job FROM employment WHERE ename='SMITH' OR ename='ALLEN');
+
+
+16-----> SELECT job FROM employment WHERE deptno = 10 AND job NOT IN (SELECT  job FROM employment WHERE deptno=20)
+
+17---->SELECT MAX(sal)FROM employment
+
+18------>SELECT *FROM employment WHERE Sal = (SELECT MAX(Sal) FROM employment);
+19------->SELECT SUM(sal) FROM employment
+20-------->SELECT * FROM employment WHERE ename LIKE '%A%'
+
+21--------> medam
+
+22-------->SELECT ename FROM employment WHERE sal > (SELECT sal FROM employment WHERE ename='BLAKE')
+
+23-------->CREATE VIEW v1 AS
+SELECT employment.ename,employment.job,deparment.Dname,deparment.Loc
+FROM employment
+JOIN deparment ON employment.deptno =deparment.Deptno;
+
+
+24-------->ADD column Pin with bigint data type in table student.  
+25-------->DELIMITER$$
+           CREATE TRIGGER BEFORE salary BEFORE UPDATE ON
+             BEGIN
+           emp FOR EACH emp_log
+           SET ACTION   ='NEW SALARY'
+            NEW SALARY = NEW.SAL
+           EMP_ID = old.empno;
+          END
+          $$
+            
